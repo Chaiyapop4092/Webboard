@@ -1,3 +1,10 @@
+<?php
+    session_start();
+    if(isset($_SESSION['id'])){
+        header("location:index.php");
+        die();
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,12 +26,24 @@
         <?php
             //echo "<h1 style = 'text-align: center;'>Webboard Kakkak</h1>";
 
-            $login = $_POST['login'];
-            $pwd = $_POST['pwd'];
+            //$login = $_POST['login'];
+            //$pwd = $_POST['pwd'];
 
-            if($login == "admin" && $pwd == "ad1234") echo "ยินดีต้อนรับคุณ ADMIN <BR>";
-            elseif($login == "member" && $pwd == "mem1234") echo "ยินดีต้อนรับคุณ MEMBER <BR>";
-            else echo "ชื่อบัญชีหรือรหัสผ่านไม่ถูกต้อง <BR>";
+            if($_POST['login'] == "admin" && $_POST['pwd'] == "ad1234"){
+                $_SESSION['username']="admin";
+                $_SESSION['role']="a";
+                $_SESSION['id']=session_id();
+                echo "ยินดีต้อนรับคุณ ADMIN <BR>";
+            }
+            elseif($_POST['login'] == "member" && $_POST['pwd'] == "mem1234"){
+                $_SESSION['username']="member";
+                $_SESSION['role']="m";
+                $_SESSION['id']=session_id();
+                echo "ยินดีต้อนรับคุณ MEMBER <BR>";
+            }
+            else{
+                echo "ชื่อบัญชีหรือรหัสผ่านไม่ถูกต้อง <BR>";
+            }
 
             echo "<a href=index.php>
                     กลับไปยังหน้าหลัก
