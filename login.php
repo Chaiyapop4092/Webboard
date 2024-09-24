@@ -20,44 +20,31 @@
         <H1 style="text-align: center;" class="mt-3">
             Webboard KakKak
         </H1>
-        <nav class="navbar navbar-expand-lg" style="background-color: #d3d3d3;">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="index.php"><i class="bi bi-house-door-fill"></i> Home</a>
-                <ul class="navbar-nav">
-                    <?php
-                        if(!isset($_SESSION['id'])){
-                            echo "<a href='login.php' class=nav-link style='float: right;'><i class='bi bi-pencil-square'></i>เข้าสู่ระบบ</a>";
-                        }
-                        else{
-                            echo "<li class='nav-item dropdown'>
-                                    <a class='btn btn-outline-secondary btn-sm dropdown-toggle' href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false'>
-                                        <i class='bi bi-person-lines-fill'></i> $_SESSION[username]&nbsp
-                                    </a>
-                                    <ul class='dropdown-menu'>
-                                        <li><a class='btn btn-sm dropdown-item' href='logout.php'>
-                                        <i class='bi bi-power'></i> ออกจากระบบ
-                                        </a></li>
-                                    </ul>
-                                </li>";
-                        }
-                    ?>
-                </ul>
-            </div>
-        </nav>
-        <div class="card bg-primary text-white">
-            <div class="card-body">
-                <!--<form action="verify.php" method="post">
-                    <table style="border: 2px solid black; width: 40%;" align="center">
-                        <tr><td colspan="2" style="background-color: #6cd2fe;"> เข้าสู่ระบบ <td></td></td></tr>
-                        <tr><td> Login </td><td><input type="text" name="login"></td></tr>
-                        <tr><td> Password </td><td><input type="password" name="pwd"></td></tr>
-                        <tr><td colspan="2" align="center"> <input type="submit" value="Login"> </td></td></td></tr> 
-                    </table>
-                </form>-->
+        <?php include "nav.php" ?>
+        <div class="row" >
+            <div class="col-sm-8 col-md-6 col-lg-4 mx-auto">
+                <div class="card mt-4">
+                    <div class="card-header">เข้าสู่ระบบ</div>
+                    <div class="card-body">
+                        <form action="verify.php" method="post">
+                            <div class="form-group mt-3">
+                                <label for="login" class="form-label">Login:</label>
+                                <input type="text" name="login" class="form-control" id="login">
+                            </div>
+                            <div class="form-group mt-3">
+                                <label for="pwd" class="form-label">Password:</label>
+                                <input type="password" name="pwd" class="form-control" id="pwd">
+                            </div>
+                            <div class="mt-3 d-flex justify-content-center">
+                                <input type="submit" value="Login" class="btn btn-success btn-sm me-2">
+                                <input type="submit" value="Reset" class="btn btn-danger btn-sm me-2">
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <p align="center">
+        <p align="center" class="mt-3">
             ถ้ายังไม่ได้เป็นสมาชิก 
             <a href="register.php">
                 กรุณาสมัครสมาชิก
