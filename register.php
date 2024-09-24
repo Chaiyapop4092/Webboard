@@ -22,9 +22,9 @@
         <tr><td>ชื่อบัญชี :</td><td><input type="text" name="regAcc"></td></tr>
         <tr><td>รหัสผ่าน :</td><td><input type="password" name="regPwd"></td></tr>
         <tr><td>ชื่อ-นามสกุล :</td><td><input type="text" name="regName"></td></tr>
-        <tr><td>เพศ :</td><td><input type="radio" name="regM">ชาย <br>
-        <input type="radio" name="regF">หญิง <br> 
-        <input type="radio" name="regO">อื่นๆ</td></tr>
+        <tr><td>เพศ :</td><td><input type="radio" name="regG">ชาย <br>
+        <input type="radio" name="regG">หญิง <br> 
+        <input type="radio" name="regG">อื่นๆ</td></tr>
         <tr><td>อีเมล: </td><td><input type="text" name="regEmail"></td></tr>
         <tr><td colspan="2" align="center"> <input type="submit" value="สมัครสมาชิก"> </td></td></td></tr>
     </table>
