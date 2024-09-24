@@ -64,7 +64,7 @@
                         </a>";
                     if(isset($_SESSION['id']) && $_SESSION['role']=="a"){
                         echo "&nbsp&nbsp
-                        <a href=delete.php?id=$i class='btn btn-danger' style='float: right;'><i class='bi bi-trash'></i></a>";
+                        <a href=delete.php?id=$i class='btn btn-danger btn-sm me-3' style='float: right;'><i class='bi bi-trash'></i></a>";
                     }
                     echo "</td></tr>";
                 }
