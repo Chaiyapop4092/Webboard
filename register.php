@@ -67,7 +67,7 @@
                                 </div>
                                 <label class="col-lg-3 col-form-label mt-3" for="email">อีเมล :</label>
                                 <div class="col-lg-9">
-                                    <input id="email" type="text" name="email" class="form-control mt-3" required>
+                                    <input id="email" type="email" name="email" class="form-control mt-3" required>
                                 </div>
                                 <label class="col-lg-3 col-form-label mt-3" for=""></label>
                                 <div class="col-lg-9 col-form-label mt-3">
