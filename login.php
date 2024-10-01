@@ -21,9 +21,15 @@
             Webboard KakKak
         </H1>
         <?php include "nav.php" ?>
-        <div class="row" >
+        <div class="row mt-4">
             <div class="col-sm-8 col-md-6 col-lg-4 mx-auto">
-                <div class="card mt-4">
+                <?php
+                    if(isset($_SESSION['error'])){
+                        echo "<div class='alert alert-danger'>ชื่อบัญชีหรือรหัสผ่านไม่ถูกต้อง</div>";
+                        unset($_SESSION['error']);
+                    }
+                ?>
+                <div class="card">
                     <div class="card-header">เข้าสู่ระบบ</div>
                     <div class="card-body">
                         <form action="verify.php" method="post">
