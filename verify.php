@@ -33,6 +33,11 @@
             header("location:index.php");
             die();
         }
+        elseif($_POST['Reset'] == "Reset"){
+            unset($_SESSION['error']);
+            header("location:login.php");
+            die();
+        }
         else{
             $_SESSION['error']='error';
             header("location:login.php");
