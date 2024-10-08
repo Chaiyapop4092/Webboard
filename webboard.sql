@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 01, 2024 at 06:09 AM
+-- Generation Time: Oct 08, 2024 at 06:17 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -31,6 +31,16 @@ CREATE TABLE `category` (
   `id` int(11) NOT NULL,
   `name` varchar(32) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`id`, `name`) VALUES
+(1, 'เรื่องทั่วไป'),
+(2, 'เรื่องเรียน'),
+(3, 'เรื่องกีฬา'),
+(4, 'เรื่องธรรมดา');
 
 -- --------------------------------------------------------
 
@@ -61,6 +71,19 @@ CREATE TABLE `post` (
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `post`
+--
+
+INSERT INTO `post` (`id`, `title`, `content`, `post_date`, `cat_id`, `user_id`) VALUES
+(5, 'จะทำยังไงให้เด้งน้ำได้', 'อย่าเลื่อนผ่านเลย บอกหน่อย', '2024-10-08 10:22:29', 1, 4),
+(6, 'จะทำยังไงให้เด้งบนบกได้', 'จะไม่บอกจริงๆหรอ', '2024-10-08 10:25:15', 2, 4),
+(7, 'เด้งแล้วจะ F ไหม', 'ไม่อยาก F', '2024-10-08 10:32:12', 2, 4),
+(8, 'จะทำยังไงให้เด้งอากาศได้', 'บอกเหอะ', '2024-10-08 10:57:31', 1, 4),
+(9, 's', 's', '2024-10-08 11:00:26', 1, 4),
+(10, 'd', 'd', '2024-10-08 11:02:05', 1, 11),
+(11, 'normal', 'very normal', '2024-10-08 11:08:26', 4, 12);
+
 -- --------------------------------------------------------
 
 --
@@ -82,9 +105,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `login`, `password`, `name`, `gender`, `email`, `role`) VALUES
-(1, 'r', 'r', 'w', 'm', 's', 'm'),
-(2, 'unit', 'firefly', 'chaiyapop rodhuab', 'm', 's6503051624092@email.kmutnb.ac.t', 'm'),
-(3, '2', '2', '1', 'm', '45', 'm');
+(4, 'หมูเด้งน้ำ', 'a0f1490a20d0211c997b44bc357e1972deab8ae3', 'ไม่บอก', 'm', 'moodeng@email.com', 'm'),
+(10, 'หมูเด้งบก', '630094d69d35333e449bad8491a6e43a63ef8742', 'ไม่บอก', 'm', 'moodengbok@email.com', 'm'),
+(11, 'หมูเด้งอากาศ', 'a0f1490a20d0211c997b44bc357e1972deab8ae3', 'ไม่บอกF', 'f', 'moodengfm@email.com', 'm'),
+(12, 'p', '516b9783fca517eecbd1d064da2d165310b19759', 'p', 'm', 'moodeng@email.com', 'm');
 
 --
 -- Indexes for dumped tables
@@ -122,7 +146,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `comment`
@@ -134,13 +158,13 @@ ALTER TABLE `comment`
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

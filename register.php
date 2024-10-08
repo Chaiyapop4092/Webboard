@@ -42,6 +42,17 @@
         <?php include "nav.php" ?>
         <div class="row mt-4">
             <div class="col-sm-10 col-md-8 col-lg-6 mx-auto">
+                <?php
+                    if(isset($_SESSION['add_login'])){
+                        if($_SESSION['add_login']=='error'){
+                            echo "<div class='alert alert-danger'>ชื่อบัญชีซ้ำหรือฐานข้อมูลมีปัญหา</div>";
+                        }
+                        else{
+                            echo "<div class='alert alert-success'>เพิ่มบัญชีเรียบร้อยแล้ว</div>";
+                        }
+                        unset($_SESSION['add_login']);
+                    }
+                ?>
                 <div class="card border-primary">
                     <h5 class="card-header bg-primary text-white">เข้าสู่ระบบ</h5>
                     <div class="card-body">
@@ -82,10 +93,10 @@
         <!--<div class="row mt-4">
             <div class="col-sm-8 col-md-6 col-lg-4 mx-auto">
                 <?php
-                    if(isset($_SESSION['error'])){
+                    /*if(isset($_SESSION['error'])){
                         echo "<div class='alert alert-danger'>ชื่อบัญชีหรือรหัสผ่านไม่ถูกต้อง</div>";
                         unset($_SESSION['error']);
-                    }
+                    }*/
                 ?>
                 <div class="card border-primary">
                     <div class="card-header bg-primary text-white">เข้าสู่ระบบ</div>
