@@ -11,17 +11,24 @@
     </style>
 </head>
 <body>
-    <H1>
-        Webboard KakKak
-    </H1>
-    <hr>
-    <center>
+    <div class="container-lg">
+        <H1 style="text-align: center;" class="mt-3">
+            Webboard KakKak
+        </H1>
+        <?php include "nav.php" ?>
+        
+    </div>
+</body>
+</html>
+
+
+<!--<center>
         <p>
-            <?php
-                $id = $_GET['id'];
+        <?php
+                /*$id = $_GET['id'];
                 echo "ต้องการดูกระทู้หมายเลข $id <BR> เป็นกระทู้หมายเลข";
                 if($id % 2 == 0) echo "คู่";
-                else echo "คี่"
+                else echo "คี่"*/
             ?> 
         </p>
         <table style="border: 2px solid black; width: 40%;" align="center">
@@ -33,6 +40,4 @@
         <a href="index.php">
             กลับไปยังหน้าหลัก
         </a>
-    </center>
-</body>
-</html>
+    </center>-->
