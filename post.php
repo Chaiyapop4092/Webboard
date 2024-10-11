@@ -17,6 +17,28 @@
             Webboard KakKak
         </H1>
         <?php include "nav.php" ?>
+        <?php
+            $conn=new PDO("mysql:host=localhost;dbname=webboard;charset=utf8","root","");
+            $post="SELECT post.title,post.content,user.login,post.post_date FROM post INNER JOIN user ON (post.user_id=user.id) WHERE post.id=$_GET[id]";
+            $result=$conn->query($post);
+            while($row=$result->fetch()){
+                echo "<div class='card border-primary m-5 col-lg-8 mx-auto'>
+                <div class='card-header bg-primary text-white'>$row[0]</div>
+                <div class='card-body'>$row[1]
+                <div class='mt-2'>$row[2] - $row[3]</div></div></div>";
+            }
+            $i=1;
+            $comment="SELECT comment.id,comment.content,user.login,comment.post_date FROM comment INNER JOIN user ON (comment.user_id=user.id) WHERE comment.post_id=$_GET[id] ORDER BY comment.post_date ASC";
+            $result=$conn->query($comment);
+            while($row=$result->fetch()){
+                echo "<div class='card border-info m-5 col-lg-8 mx-auto'>
+                <div class='card-header bg-info text-white'>ความคิดเห็นที่ $i</div>
+                <div class='card-body'>$row[1]
+                <div class='mt-2'>$row[2] - $row[3]</div></div></div>";
+                $i++;
+            }
+            $conn=null;
+        ?>  
         <div class="card text-dark bg-white border-success m-5 col-lg-8 mx-auto ">
             <div class="card-header bg-success text-white">แสดงความคิดเห็น</div>
             <div class="card-body">
@@ -42,7 +64,6 @@
     </div>
 </body>
 </html>
-
 
 <!--<center>
         <p>

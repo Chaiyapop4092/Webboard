@@ -14,6 +14,12 @@
 <body>
     <div class="container-lg">
         <H1 style="text-align: center;" class="mt-3"> Webboard KakKak </H1>
+        <script>
+            function myFunction(){
+                let r=confirm("ต้องการจะลบจริงหรือไม่");
+                return r;
+            }
+        </script>
         <?php include "nav.php" ?>
         <div class="mt-3">
             <label>หมวดหมู่</label>
@@ -47,20 +53,25 @@
                     INNER JOIN category as t3 ON (t1.cat_id=t3.id) ORDER BY t1.post_date DESC";
                 $result=$conn->query($sql);
                 while($row = $result->fetch()){
-                    echo "<tr><td>[ $row[0] ] <a href=post.php?id=$row[2]
-                    style=text-decoration:none>$row[1]</a><br>$row[3] - $row[4]</td></tr>";
+                    echo "<tr><td class='d-flex justify-content-between'>
+                    <div>[ $row[0] ] <a href=post.php?id=$row[2]
+                    style=text-decoration:none>$row[1]</a><br>$row[3] - $row[4]</div>";
+                    if(isset($_SESSION['id']) && $_SESSION['role']=="a"){
+                        echo "<div><a href=delete.php?id=$row[2]
+                        class='btn btn-danger btn-sm float-end' onclick='return myFunction();'><i class='bi bi-trash'></i></a></div>";
+                    }
+                    echo "</td></tr>";
                 }
-                $conn=null;
-                /*for($i = 1; $i <= 10; $i++){
-                    echo "<tr><td><a href=post.php?id=$i style='text-decoration: none;'>
-                            กระทู้ที่ $i
-                        </a>";
+                /*$post="SELECT post.id FROM post";
+                $result=$conn->query($post);
+                while($row=$result->fetch()){
                     if(isset($_SESSION['id']) && $_SESSION['role']=="a"){
                         echo "&nbsp&nbsp
-                        <a href=delete.php?id=$i class='btn btn-danger btn-sm me-3' style='float: right;'><i class='bi bi-trash'></i></a>";
+                        <a href=delete.php?id=$row[0] class='btn btn-danger btn-sm me-3' style='float: right;'><i class='bi bi-trash'></i></a>";
                     }
                     echo "</td></tr>";
                 }*/
+                $conn=null;
             ?>  
         </table>
         
