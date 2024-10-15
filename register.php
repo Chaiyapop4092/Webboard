@@ -34,6 +34,17 @@
             กลับไปหน้าหลัก
         </a>
     </p>-->
+    <script>
+        function onblurPWD(){
+            let pwd=document.getElementById("pwd");
+            let pwd_cmfrm=document.getElementById("pwd_cnfrm");
+            if(pwd.value!==pwd_cmfrm.value){
+                alert("รหัสผ่านทั้งสองช่องไม่ตรงกัน");
+                pwd.value="";
+                pwd_cnfrm.value="";
+            }
+        }
+    </script>
 
     <div class="container-lg">
         <H1 style="text-align: center;" class="mt-3">
@@ -65,6 +76,10 @@
                                 <label class="col-lg-3 col-form-label mt-3" for="pwd">รหัสผ่าน :</label>
                                 <div class="col-lg-9">
                                     <input id="pwd" type="password" name="pwd" class="form-control mt-3" required>
+                                </div>
+                                <label class="col-lg-3 col-form-label mt-3" for="pwd_cnfrm">ใส่รหัสผ่านซ้ำ :</label>
+                                <div class="col-lg-9">
+                                    <input id="pwd_cnfrm" type="password" name="pwd_cnfrm" class="form-control mt-3" onblur="onblurPWD()" required>
                                 </div>
                                 <label class="col-lg-3 col-form-label mt-3" for="name">ชื่อ-นามสกุล :</label>
                                 <div class="col-lg-9">
