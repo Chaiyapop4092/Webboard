@@ -21,6 +21,39 @@
             Webboard KakKak
         </H1>
         <?php include "nav.php" ?>
+        <script>
+            function togglePasswordVisibility() {
+                let pwd = document.getElementById("pwd");
+                let toggleEye = document.getElementById("toggleEye");
+                
+                if (pwd.type === "password") {
+                    pwd.type = "text";
+                    toggleEye.classList.remove("bi-eye-fill");
+                    toggleEye.classList.add("bi-eye-slash-fill");
+                }
+                else {
+                    pwd.type = "password";
+                    toggleEye.classList.remove("bi-eye-slash-fill");
+                    toggleEye.classList.add("bi-eye-fill");
+                }
+
+                /*let pwd = document.getElementById("pwd");
+                let hidePWD = document.getElementById("hideEye");
+                let showPWD = document.getElementById("showEye");
+                hideEye.classList.remove("d-none");
+                if (pwd.type === "password") {
+                    pwd.type = "text";
+                    showEye.style.display="none";
+                    hideEye.style.display="block";
+                }
+                else {
+                    pwd.type = "password";
+                    showEye.style.display="block";
+                    hideEye.style.display="none";
+                }*/
+
+            }
+        </script>
         <div class="row mt-4">
             <div class="col-sm-8 col-md-6 col-lg-4 mx-auto">
                 <?php
@@ -39,7 +72,14 @@
                             </div>
                             <div class="form-group mt-3">
                                 <label for="pwd" class="form-label">Password:</label>
-                                <input type="password" name="pwd" class="form-control" id="pwd">
+                                <div class="input-group">
+                                    <input type="password" name="pwd" class="form-control" id="pwd">
+                                    <span class="input-group-text" onclick="togglePasswordVisibility()">
+                                        <i class="bi bi-eye-fill" id="toggleEye"></i>
+                                        <!--<i class="bi bi-eye-fill" id="showEye"></i>
+                                        <i class="bi bi-eye-slash-fill d-none" id="hideEye"></i>-->
+                                    </span>
+                                </div>
                             </div>
                             <div class="mt-3 d-flex justify-content-center">
                                 <input type="submit" value="Login" class="btn btn-success btn-sm me-2">
