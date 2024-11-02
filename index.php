@@ -28,12 +28,12 @@
                     --ทั้งหมด--
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="Button2">
-                    <li><a href="#" class="dropdown-item">ทั้งหมด</a></li>
+                    <li><a href="index.php" class="dropdown-item">ทั้งหมด</a></li>
                     <?php
                         $conn=new PDO("mysql:host=localhost;dbname=webboard;charset=utf8","root","");
                         $sql="SELECT * FROM category";
                         foreach($conn->query($sql) as $row){
-                            echo "<li><a href=# class=dropdown-item>$row[name]</a></li>";
+                            echo "<li><a href='?category={$row['id']}' class=dropdown-item>$row[name]</a></li>";
                         }
                         $conn=null;
                     ?>
@@ -48,9 +48,17 @@
         <table class="table table-striped mt-4">
             <?php
                 $conn=new PDO("mysql:host=localhost;dbname=webboard;charset=utf8","root","");
-                $sql="SELECT t3.name,t1.title,t1.id,t2.login,t1.post_date FROM post as t1
-                    INNER JOIN user as t2 ON (t1.user_id=t2.id)
-                    INNER JOIN category as t3 ON (t1.cat_id=t3.id) ORDER BY t1.post_date DESC";
+                if (isset($_GET['category'])) {
+                    $category = $_GET['category'];
+                    $sql="SELECT t3.name,t1.title,t1.id,t2.login,t1.post_date FROM post as t1
+                        INNER JOIN user as t2 ON (t1.user_id=t2.id)
+                        INNER JOIN category as t3 ON (t1.cat_id=t3.id) WHERE t1.cat_id = $category ORDER BY t1.post_date DESC";
+                }
+                else{
+                    $sql="SELECT t3.name,t1.title,t1.id,t2.login,t1.post_date FROM post as t1
+                        INNER JOIN user as t2 ON (t1.user_id=t2.id)
+                        INNER JOIN category as t3 ON (t1.cat_id=t3.id) ORDER BY t1.post_date DESC";
+                }
                 $result=$conn->query($sql);
                 while($row = $result->fetch()){
                     echo "<tr><td class='d-flex justify-content-between'>
