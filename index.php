@@ -68,7 +68,7 @@
                         if ($_SESSION['user_id'] == $row[5]) {
                             echo "<div>
                                     <a href='delete.php?id={$row[2]}' class='btn btn-danger btn-sm float-end' onclick='return myFunction();'><i class='bi bi-trash'></i></a>
-                                    <a href='edit.php?id={$row[2]}' class='btn btn-warning btn-sm float-end me-2'><i class='bi bi-pencil'></i></a>
+                                    <a href='editpost.php?id={$row[2]}' class='btn btn-warning btn-sm float-end me-2'><i class='bi bi-pencil'></i></a>
                                   </div>";
                         } elseif ($_SESSION['role'] == "a") {
                             echo "<div>
