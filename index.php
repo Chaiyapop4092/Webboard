@@ -50,12 +50,12 @@
                 $conn=new PDO("mysql:host=localhost;dbname=webboard;charset=utf8","root","");
                 if (isset($_GET['category'])) {
                     $category = $_GET['category'];
-                    $sql="SELECT t3.name,t1.title,t1.id,t2.login,t1.post_date FROM post as t1
+                    $sql="SELECT t3.name,t1.title,t1.id,t2.login,t1.post_date, t1.user_id FROM post as t1
                         INNER JOIN user as t2 ON (t1.user_id=t2.id)
                         INNER JOIN category as t3 ON (t1.cat_id=t3.id) WHERE t1.cat_id = $category ORDER BY t1.post_date DESC";
                 }
                 else{
-                    $sql="SELECT t3.name,t1.title,t1.id,t2.login,t1.post_date FROM post as t1
+                    $sql="SELECT t3.name,t1.title,t1.id,t2.login,t1.post_date, t1.user_id FROM post as t1
                         INNER JOIN user as t2 ON (t1.user_id=t2.id)
                         INNER JOIN category as t3 ON (t1.cat_id=t3.id) ORDER BY t1.post_date DESC";
                 }
@@ -64,9 +64,23 @@
                     echo "<tr><td class='d-flex justify-content-between'>
                     <div>[ $row[0] ] <a href=post.php?id=$row[2]
                     style=text-decoration:none>$row[1]</a><br>$row[3] - $row[4]</div>";
-                    if(isset($_SESSION['id']) && $_SESSION['role']=="a"){
-                        echo "<div><a href=delete.php?id=$row[2]
-                        class='btn btn-danger btn-sm float-end' onclick='return myFunction();'><i class='bi bi-trash'></i></a></div>";
+                    if (isset($_SESSION['id'])){
+                        if ($_SESSION['user_id'] == $row[5]) {
+                            echo "<div>
+                                    <a href='delete.php?id={$row[2]}' class='btn btn-danger btn-sm float-end' onclick='return myFunction();'><i class='bi bi-trash'></i></a>
+                                    <a href='edit.php?id={$row[2]}' class='btn btn-warning btn-sm float-end me-2'><i class='bi bi-pencil'></i> Edit</a>
+                                  </div>";
+                        } elseif ($_SESSION['role'] == "a") {
+                            echo "<div>
+                                    <a href='delete.php?id={$row[2]}' class='btn btn-danger btn-sm float-end' onclick='return myFunction();'><i class='bi bi-trash'></i></a>
+                                  </div>";
+                        }
+                        /*if($_SESSION['role'] == "a" || $_SESSION['id'] == $row['user_id']){
+                            echo "<div>
+                                    <a href='delete.php?id={$row['id']}' class='btn btn-danger btn-sm float-end' onclick='return myFunction();'><i class='bi bi-trash'></i></a>        
+                                    <a href='edit.php?id={$row['id']}' class='btn btn-warning btn-sm float-end me-2'><i class='bi bi-pencil'></i> Edit</a>
+                                </div>";
+                        }*/
                     }
                     echo "</td></tr>";
                 }
