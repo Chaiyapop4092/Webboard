@@ -19,21 +19,45 @@
                 let r=confirm("ต้องการจะลบจริงหรือไม่");
                 return r;
             }
+            function changeButtonText(selectedItem) {
+                document.getElementById('dropdownButton').innerText = "<?php echo addslashes($buttonText); ?>";
+            }
         </script>
         <?php include "nav.php" ?>
         <div class="mt-3">
             <label>หมวดหมู่</label>
             <span class="dropdown">
-                <button class="btn btn-light btn-sm dropdown-toggle" data-bs-toggle="dropdown">
-                    --ทั้งหมด--
-                </button>
+            <?php
+                // Connect to the database
+                $conn = new PDO("mysql:host=localhost;dbname=webboard;charset=utf8", "root", "");
+
+                // Determine the button text based on the selected category
+                $buttonText = '--ทั้งหมด--'; // Default text
+                if (isset($_GET['category'])) {
+                    $category = $_GET['category'];
+
+                    // Fetch the selected category name directly
+                    $sql = "SELECT name FROM category WHERE id = $category";
+                    $result = $conn->query($sql);
+                    if ($result) {
+                        $row = $result->fetch();
+                        if ($row) {
+                            $buttonText = $row['name']; // Update button text
+                        }
+                    }
+                }
+            ?>
+            <button id="dropdownButton" class="btn btn-light btn-sm dropdown-toggle" data-bs-toggle="dropdown">
+                <?php echo $buttonText ?>
+            </button>
+            <span>
                 <ul class="dropdown-menu" aria-labelledby="Button2">
                     <li><a href="index.php" class="dropdown-item">ทั้งหมด</a></li>
                     <?php
                         $conn=new PDO("mysql:host=localhost;dbname=webboard;charset=utf8","root","");
                         $sql="SELECT * FROM category";
                         foreach($conn->query($sql) as $row){
-                            echo "<li><a href='?category={$row['id']}' class=dropdown-item>$row[name]</a></li>";
+                            echo "<li><a href='?category={$row['id']}' class='dropdown-item'>{$row['name']}</a></li>";
                         }
                         $conn=null;
                     ?>
