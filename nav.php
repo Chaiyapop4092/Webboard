@@ -16,7 +16,7 @@
                         echo "  <li><a class='btn btn-sm dropdown-item' href='category.php'>
                                 <i class='bi bi-gear'></i> จัดการหมวดหมู่
                                 </a></li>
-                                <li><a class='btn btn-sm dropdown-item' href='category.php'>
+                                <li><a class='btn btn-sm dropdown-item' href='user.php'>
                                 <i class='bi bi-person'></i> จัดการผู้ใช้งาน
                                 </a></li>";
                         
