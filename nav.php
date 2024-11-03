@@ -11,7 +11,17 @@
                             <a class='btn btn-outline-secondary btn-sm dropdown-toggle' href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false'>
                                 <i class='bi bi-person-lines-fill'></i> $_SESSION[username]&nbsp
                             </a>
-                            <ul class='dropdown-menu'>
+                            <ul class='dropdown-menu'>";
+                    if($_SESSION['role'] == "a"){
+                        echo "  <li><a class='btn btn-sm dropdown-item' href='category.php'>
+                                <i class='bi bi-gear'></i> จัดการหมวดหมู่
+                                </a></li>
+                                <li><a class='btn btn-sm dropdown-item' href='category.php'>
+                                <i class='bi bi-person'></i> จัดการผู้ใช้งาน
+                                </a></li>";
+                        
+                    }
+                    echo    "
                                 <li><a class='btn btn-sm dropdown-item' href='logout.php'>
                                 <i class='bi bi-power'></i> ออกจากระบบ
                                 </a></li>
