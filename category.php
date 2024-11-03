@@ -82,6 +82,28 @@
                 }*/
                 //$conn=null;
             ?>
-            
+            <div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="addCategoryModalLabel">เพิ่มหมวดหมู่ใหม่</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="addCategoryForm">
+                                <div class="mb-3">
+                                    <label for="categoryName" class="form-label">ชื่อหมวดหมู่</label>
+                                    <input type="text" class="form-control" id="categoryName" required>
+                                </div>
+                                <!-- คุณสามารถเพิ่มฟิลด์อื่นๆ ที่ต้องการได้ที่นี่ -->
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+                            <button type="submit" class="btn btn-primary" form="addCategoryForm">บันทึก</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </table>
     </div>
