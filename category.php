@@ -15,6 +15,12 @@
     <div class="container-lg">
         <H1 style="text-align: center;" class="mt-3"> Webboard KakKak </H1>
         <?php include "nav.php" ?>
+        <script>
+            function myFunction(){
+                let r=confirm("ต้องการจะลบจริงหรือไม่");
+                return r;
+            }
+        </script>
         <div class="row mt-4">
             <div class="col-sm-10 col-md-8 col-lg-6 mx-auto">
                 <?php
