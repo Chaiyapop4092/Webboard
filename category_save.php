@@ -15,7 +15,7 @@ session_start();
     
     $conn->exec($sql);
 
-    $_SESSION['categoryAdd'] = "true";
+    $_SESSION['categoryStatus'] = "add";
     $conn = null;
     
     /*else{

@@ -24,14 +24,17 @@
         <div class="row mt-4">
             <div class="col-sm-10 col-md-8 col-lg-6 mx-auto">
                 <?php
-                    if(isset($_SESSION['categoryAdd'])){
-                        if($_SESSION['categoryAdd']=='false'){
-                            echo "<div class='alert alert-danger'>กรุณาใส่ชื่อหมวดหมู่</div>";
-                        }
-                        else{
+                    if(isset($_SESSION['categoryStatus'])){
+                        if($_SESSION['categoryStatus']=='add'){
                             echo "<div class='alert alert-success'>เพิ่มหมวดหมู่เรียบร้อยแล้ว</div>";
                         }
-                        unset($_SESSION['categoryAdd']);
+                        elseif($_SESSION['categoryStatus']=='remove'){
+                            echo "<div class='alert alert-success'>ลบหมวดหมู่เรียบร้อยแล้ว</div>";
+                        }
+                        /*else{
+                            echo "<div class='alert alert-success'>เพิ่มหมวดหมู่เรียบร้อยแล้ว</div>";
+                        }*/
+                        unset($_SESSION['categoryStatus']);
                     }
                 ?>
                 <table class="table table-striped mt-4">
