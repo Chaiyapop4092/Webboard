@@ -1,10 +1,19 @@
 <?php
     session_start();
-    if(!isset($_SESSION['id'])){
+    $id = $_GET['id'];
+    $conn=new PDO("mysql:host=localhost;dbname=webboard;charset=utf8","root","");
+    $sql = "SELECT t1.user_id FROM post AS t1 WHERE id='$id'";
+    $result=$conn->query($sql);
+    $row = $result->fetch();
+    if(!isset($_SESSION['id']) || $_SESSION['user_id']!=$row[0]){
         header("location:index.php");
         die();
     }
-    $id = $_GET['id'];
+    /*elseif($_SESSION['user_id']!=$row[0]){
+        header("location:index.php");
+        die();
+    }*/
+    $conn=null;
     //$user_id = $_SESSION['id'];
 ?>
 <!DOCTYPE html>

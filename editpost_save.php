@@ -10,7 +10,7 @@
     $post_id = $_POST['id'];
 
     $conn = new PDO("mysql:host=localhost;dbname=webboard;charset=utf8","root","");
-    echo "Title: $title, Content: $content, Category ID: $cat_id, User ID: $user_id, Post ID: $post_id";
+    //echo "Title: $title, Content: $content, Category ID: $cat_id, User ID: $user_id, Post ID: $post_id";
 
     $sql = "UPDATE post SET title = '$title', content = '$content', cat_id = '$cat_id', user_id = '$user_id' WHERE id = '$post_id'";
     //$sql="INSERT INTO post (post_date) VALUES (NOW())";
