@@ -94,8 +94,13 @@
                                                         <input type="text" class="form-control" id="userEmail" name="userEmail" required>
                                                     </div>
                                                     <div class="mb-3">
-                                                        <label for="userRole" class="form-label">สิทธิ์:</label>
-                                                        <input type="text" class="form-control" id="userRole" name="userRole" required>
+                                                        <label for="userRole" class="form-label">เพศ:</label>
+                                                        <select class="form-select" id="userRole" name="userRole" required>
+                                                            <option id="currentRole" value="" disabled selected></option>
+                                                            <option value="m">Member</option>
+                                                            <option value="a">Admin</option>
+                                                            <option value="b">Ban</option>
+                                                        </select>
                                                     </div>
                                                 </form>
                                             </div>
@@ -118,9 +123,39 @@
                                                             document.getElementById("editUserId").value = userId;
                                                             document.getElementById("userName").value = userName;
                                                             document.getElementById("fullName").value = fullName;
-                                                            document.getElementById("currentGender").innerHTML = gender;
+                                                            
                                                             document.getElementById("userEmail").value = email;
-                                                            document.getElementById("userRole").value = role;
+                                                            
+
+                                                            var genderSelect = document.getElementById("userGender");
+                                                            var currentGenderOption = document.getElementById("currentGender");
+
+                                                            if (gender === "m") {
+                                                                currentGenderOption.innerHTML = "ชาย";
+                                                                currentGenderOption.value = "m";
+                                                            } else if (gender === "f") {
+                                                                currentGenderOption.innerHTML = "หญิง";
+                                                                currentGenderOption.value = "f";
+                                                            } else {
+                                                                currentGenderOption.innerHTML = "อื่นๆ";
+                                                                currentGenderOption.value = "o";
+                                                            }
+                                                            currentGenderOption.selected = true;
+
+                                                            var roleSelect = document.getElementById("userRole");
+                                                            var currentRoleOption = document.getElementById("currentRole");
+
+                                                            if (role === "m") {
+                                                                currentRoleOption.innerHTML = "Member";
+                                                                currentRoleOption.value = "m";
+                                                            } else if (role === "a") {
+                                                                currentRoleOption.innerHTML = "Admin";
+                                                                currentRoleOption.value = "a";
+                                                            } else {
+                                                                currentRoleOption.innerHTML = "Band";
+                                                                currentRoleOption.value = "b";
+                                                            }
+                                                            currentRoleOption.selected = true;
                                                         });
                                                     });
                                                 });
