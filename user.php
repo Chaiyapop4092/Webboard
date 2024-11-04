@@ -18,14 +18,14 @@
         <div class="row mt-4">
             <div class="col-sm-12 col-md-11 col-lg-10 mx-auto">
                 <?php
-                    if(isset($_SESSION['categoryStatus'])){
-                        if($_SESSION['categoryStatus']=='add'){
-                            echo "<div class='alert alert-success'>เพิ่มหมวดหมู่เรียบร้อยแล้ว</div>";
+                    if(isset($_SESSION['userStatus'])){
+                        if($_SESSION['userStatus']=='edit'){
+                            echo "<div class='alert alert-success'>แก้ไขข้อมูลผู้ใช้เรียบร้อยแล้ว</div>";
                         }
-                        elseif($_SESSION['categoryStatus']=='remove'){
+                        /*elseif($_SESSION['userStatus']=='remove'){
                             echo "<div class='alert alert-success'>ลบหมวดหมู่เรียบร้อยแล้ว</div>";
-                        }
-                        unset($_SESSION['categoryStatus']);
+                        }*/
+                        unset($_SESSION['userStatus']);
                     }
                 ?>
                 <table class="table table-striped mt-4">
@@ -72,6 +72,8 @@
                                             <div class="modal-body">
                                                 <form id="editUserForm" method="post" action="edituser.php">
                                                     <input type="hidden" id="editUserId" name="userID" value="">
+                                                    <input type="hidden" id="editUserGender" name="userGender" value="">
+                                                    <input type="hidden" id="editUserRole" name="userRole" value="">
                                                     <div class="mb-3">
                                                         <label for="userName" class="form-label">ชื่อผู้ใช้:</label>
                                                         <input type="text" class="form-control" id="userName" name="userName" disabled>
@@ -84,9 +86,9 @@
                                                         <label for="userGender" class="form-label">เพศ:</label>
                                                         <select class="form-select" id="userGender" name="userGender" required>
                                                             <option id="currentGender" value="" disabled selected></option>
-                                                            <option value="male">ชาย</option>
-                                                            <option value="female">หญิง</option>
-                                                            <option value="other">อื่นๆ</option>
+                                                            <option value="m">ชาย</option>
+                                                            <option value="f">หญิง</option>
+                                                            <option value="o">อื่นๆ</option>
                                                         </select>
                                                     </div>
                                                     <div class="mb-3">
@@ -94,7 +96,7 @@
                                                         <input type="text" class="form-control" id="userEmail" name="userEmail" required>
                                                     </div>
                                                     <div class="mb-3">
-                                                        <label for="userRole" class="form-label">เพศ:</label>
+                                                        <label for="userRole" class="form-label">สิทธิ์:</label>
                                                         <select class="form-select" id="userRole" name="userRole" required>
                                                             <option id="currentRole" value="" disabled selected></option>
                                                             <option value="m">Member</option>
@@ -123,11 +125,11 @@
                                                             document.getElementById("editUserId").value = userId;
                                                             document.getElementById("userName").value = userName;
                                                             document.getElementById("fullName").value = fullName;
-                                                            
+                                                            document.getElementById("editUserGender").value = gender;
                                                             document.getElementById("userEmail").value = email;
+                                                            document.getElementById("editUserRole").value = role;
                                                             
 
-                                                            var genderSelect = document.getElementById("userGender");
                                                             var currentGenderOption = document.getElementById("currentGender");
 
                                                             if (gender === "m") {
@@ -136,13 +138,15 @@
                                                             } else if (gender === "f") {
                                                                 currentGenderOption.innerHTML = "หญิง";
                                                                 currentGenderOption.value = "f";
+    
                                                             } else {
                                                                 currentGenderOption.innerHTML = "อื่นๆ";
                                                                 currentGenderOption.value = "o";
+                                
                                                             }
                                                             currentGenderOption.selected = true;
 
-                                                            var roleSelect = document.getElementById("userRole");
+
                                                             var currentRoleOption = document.getElementById("currentRole");
 
                                                             if (role === "m") {
@@ -152,7 +156,7 @@
                                                                 currentRoleOption.innerHTML = "Admin";
                                                                 currentRoleOption.value = "a";
                                                             } else {
-                                                                currentRoleOption.innerHTML = "Band";
+                                                                currentRoleOption.innerHTML = "Ban";
                                                                 currentRoleOption.value = "b";
                                                             }
                                                             currentRoleOption.selected = true;
