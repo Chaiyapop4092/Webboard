@@ -30,10 +30,12 @@
                         }
                         elseif($_SESSION['categoryStatus']=='remove'){
                             echo "<div class='alert alert-success'>ลบหมวดหมู่เรียบร้อยแล้ว</div>";
+                        }elseif($_SESSION['categoryStatus']=='edit'){
+                            echo "<div class='alert alert-success'>แก้ไขหมวดหมู่เรียบร้อยแล้ว</div>";
                         }
-                        /*else{
-                            echo "<div class='alert alert-success'>เพิ่มหมวดหมู่เรียบร้อยแล้ว</div>";
-                        }*/
+                        else{
+                            echo "<div class='alert alert-danger'>ไม่สามารถเพิ่มหมวดหมู่ซ้ำได้</div>";
+                        }
                         unset($_SESSION['categoryStatus']);
                     }
                 ?>
@@ -65,10 +67,17 @@
                                     <td class='text-center'>$row[0]</td>
                                     <td class='text-center'>$row[1]</td>
                                     <td class='text-center'>
-                                        <a href='editcategory.php?id={$row[0]}' class='btn btn-warning btn-sm float-center me-2'><i class='bi bi-pencil'></i></a>
+                                    <button type='button' class='btn btn-warning btn-sm' 
+                                    data-bs-toggle='modal' 
+                                    data-bs-target='#editCategoryModal' 
+                                    data-category-id=$row[0]
+                                    onclick='populateModal(this)'>
+                                    <i class='bi bi-pencil'></i>
+                                    </button>
                                         <a href='deletecategory.php?id={$row[0]}' class='btn btn-danger btn-sm float-center' onclick='return myFunction();'><i class='bi bi-trash'></i></a>
                                     </td>
                                 </tr>";
+                                
                             /*if (isset($_SESSION['id'])){
                                 if ($_SESSION['user_id'] == $row[5]) {
                                     echo "<div>
@@ -89,6 +98,7 @@
                             }*/
                             //echo "</td></tr>";
                         }
+
                         echo "</table>";
                         echo "<center><button type='button' class='btn btn-success mt-3' data-bs-toggle='modal' data-bs-target='#addCategoryModal'>
                                 <i class='bi bi-plus-circle'></i> เพิ่มหมวดหมู่ใหม่
@@ -104,6 +114,22 @@
                         }*/
                         //$conn=null;
                     ?>
+                    <script>
+                        function populateModal(button) {
+                            // Get the category ID from the button's data attribute
+                            var categoryId = button.getAttribute('data-category-id');
+                            
+                            // Set the category ID in the hidden input field
+                            document.getElementById('editCategoryId').value = categoryId;
+
+                            // Optionally, you could fetch the category name if needed
+                            // fetch('getCategory.php?id=' + categoryId)
+                            //     .then(response => response.json())
+                            //     .then(data => {
+                            //         document.getElementById('editCategoryName').value = data.name;
+                            //     });
+                        }
+                        </script>
                     <div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -122,6 +148,29 @@
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
                                     <button type="submit" class="btn btn-primary" form="addCategoryForm">บันทึก</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="editCategoryModalLabel">แก้ไขหมวดหมู่</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="editCategoryForm" method="post" action="editcategory.php">
+                                        <input type="hidden" id="editCategoryId" name="editCategoryId">
+                                        <div class="mb-3">
+                                            <label for="editCategoryName" class="form-label">ชื่อหมวดหมู่</label>
+                                            <input type="text" class="form-control" id="editCategoryName" name="editCategoryName" required>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+                                    <button type="submit" class="btn btn-primary" form="editCategoryForm">บันทึก</button>
                                 </div>
                             </div>
                         </div>
